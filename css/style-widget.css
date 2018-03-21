@@ -1,0 +1,92 @@
+
+
+.top-paragraph {
+    margin-bottom: 13px;
+}
+
+.aqi-level {
+    padding: 10px;
+    background-color: #fff;
+}
+.aqi-level h5 {
+    text-align: center;
+    color: #fff;
+    font-weight: 100;
+    font-size: 15px;
+    margin-bottom: 2px;
+}
+
+.aqi-level p {
+    text-align: center;
+    margin: 0;
+    font-size: 65px;
+    line-height: 65px;
+}
+
+@keyframes settings-rotation {
+    0% {transform: rotate(0);}
+    50% {transform: rotate(20deg);}
+    100% {transform: rotate(0);}
+}
+
+.settings-icon {
+    height: 30px;
+    float: right;
+    box-shadow: none !important;
+}
+
+.settings-icon:hover {
+    animation-name: settings-rotation;
+    animation-duration: 0.8s;
+}
+.weather {
+    text-align: center;
+    padding-top: 15px;
+}
+.weather-data {
+    margin: 0;
+    display: inline-block;
+    width: 150px;
+}
+.weather-data img {
+    width: 60px;
+}
+
+.weather-data p {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.compass {
+    position: relative;
+}
+
+.compass-body {
+
+}
+
+.compass-pointer {
+    top: 0;
+    left: 45px;
+    position: absolute;
+    z-index: 9999;
+}
+
+.pollutions {
+    padding: 10px;
+    text-align: center;
+}
+
+.pollutions span {
+    margin: 7px 10px;
+    display: inline-block;
+    line-height: 15px;
+    font-size: 15px;
+}
+
+.element-hidden {
+    display: none;
+}
+.details p {
+    margin: 0;
+}
