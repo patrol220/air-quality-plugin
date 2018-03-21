@@ -3,7 +3,7 @@
 /*
  * Plugin Name: Air Quality Plugin
  * Description: Plugin for displaying air quality data
- * Version: 0.1
+ * Version: 0.11
  * Author: Patryk Kasiczak
  * License: GPLv2 or later
  */
