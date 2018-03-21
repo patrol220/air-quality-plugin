@@ -57,3 +57,11 @@ function getCoordsAdmin() {
         }
     });
 }
+
+//Disable submiting form by pressing enter key on google fields
+jQuery(document).on('keyup keypress', 'form #autocomplete-admin, form #autocomplete', function(e) {
+    if(e.keyCode === 13) {
+        e.preventDefault();
+        return false;
+    }
+});
