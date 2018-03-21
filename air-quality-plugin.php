@@ -291,10 +291,10 @@ function display_air_quality_data($data_json) {
             <span><b>CO:</b> <?=$co?></span>
             <?php endif; ?>
             <?php if($no2): ?>
-            <span><b>NO<sub>2</sub></b>: <?=$no2?></span>
+            <span><b>NO<sub>2</sub>:</b> <?=$no2?></span>
             <?php endif; ?>
             <?php if($o3): ?>
-            <span><b>O<sub>3</sub></b>: <?=$o3?></span>
+            <span><b>O<sub>3</sub>:</b> <?=$o3?></span>
             <?php endif; ?>
             <?php if($pm10): ?>
             <span><b>PM10:</b> <?=$pm10?></span>
@@ -303,7 +303,7 @@ function display_air_quality_data($data_json) {
             <span><b>PM2.5:</b> <?=$pm25?></span>
             <?php endif; ?>
             <?php if($so2): ?>
-            <span><b>SO<sub>2</sub></b>: <?=$so2?></span>
+            <span><b>SO<sub>2</sub>:</b> <?=$so2?></span>
             <?php endif; ?>
         </div>
     </div>
