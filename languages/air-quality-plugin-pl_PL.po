@@ -5,9 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-21 15:50+0100\n"
-"PO-Revision-Date: 2018-03-21 15:52+0100\n"
+"Report-Msgid-Bugs-To: BUG-EMAIL-ADDR <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: yyyy-mm-dd hh:mm+0000\n"
+"PO-Revision-Date: 2018-03-22 14:29+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -18,47 +18,53 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: air-quality-plugin.php:75 air-quality-plugin.php:134
+#: air-quality-plugin.php:103 air-quality-plugin.php:167
 msgid "AQP Settings"
 msgstr "Ustawienia AQP"
 
-#: air-quality-plugin.php:140
+#: air-quality-plugin.php:156
+msgid ""
+"Something went wrong during retrieving information from google, try again"
+msgstr ""
+"Coś poszło nie tak w trakcie pobierania informacji z google, spróbuj ponownie"
+
+#: air-quality-plugin.php:173
 msgid "User settings"
 msgstr "Ustawienia użytkownika"
 
-#: air-quality-plugin.php:149
+#: air-quality-plugin.php:183
 msgid "Latitude"
 msgstr "Szerokość geograficzna"
 
-#: air-quality-plugin.php:153
+#: air-quality-plugin.php:187
 msgid "Longitude"
 msgstr "Długość geograficzna"
 
-#: air-quality-plugin.php:157 air-quality-plugin.php:186
+#: air-quality-plugin.php:191 air-quality-plugin.php:221
 msgid "Additional weather info (when available)"
 msgstr "Dodatkowe informacje pogodowe (jeśli dostępne)"
 
-#: air-quality-plugin.php:165
+#: air-quality-plugin.php:199
 msgid "Administrator settings"
 msgstr "Ustawienia administratora"
 
-#: air-quality-plugin.php:174
+#: air-quality-plugin.php:209
 msgid "Default latitiude"
 msgstr "Domyślna szerokość geograficzna"
 
-#: air-quality-plugin.php:178
+#: air-quality-plugin.php:213
 msgid "Default longitude"
 msgstr "Domyślna długość geograficzna"
 
-#: air-quality-plugin.php:182
+#: air-quality-plugin.php:217
 msgid "Google Maps API key"
 msgstr "Klucz API Google Maps"
 
-#: air-quality-plugin.php:190
+#: air-quality-plugin.php:225
 msgid "Let every user configure"
 msgstr "Pozwól każdemu użytkownikowi na konfigurację"
 
-#: air-quality-plugin.php:211
+#: air-quality-plugin.php:246
 msgid ""
 "Air quality is considered satisfactory, and air pollution poses little or no "
 "risk."
@@ -66,7 +72,7 @@ msgstr ""
 "Jakość powietrza jest uznawana za zadowalającą, a zanieczyszczenie powietrza "
 "stanowi niewielkie ryzyko lub jego brak."
 
-#: air-quality-plugin.php:212
+#: air-quality-plugin.php:247
 msgid ""
 "Air quality is acceptable; however, for some pollutants there may be a "
 "moderate health concern for a very small number of people who are unusually "
@@ -76,7 +82,7 @@ msgstr ""
 "być umiarkowanie szkodliwe dla bardzo małej liczby osób, które są niezwykle "
 "wrażliwe na zanieczyszczenie powietrza."
 
-#: air-quality-plugin.php:213
+#: air-quality-plugin.php:248
 msgid ""
 "Members of sensitive groups may experience health effects. The general "
 "public is not likely to be affected."
@@ -84,7 +90,7 @@ msgstr ""
 "U osób wrażliwych mogą wystąpić negatywne skutki dla zdrowia. Większość "
 "populacji może nie odczuwać negatywnych objawów."
 
-#: air-quality-plugin.php:214
+#: air-quality-plugin.php:249
 msgid ""
 "Everyone may begin to experience health effects; members of sensitive groups "
 "may experience more serious health effects."
@@ -92,35 +98,35 @@ msgstr ""
 "Każdy może zacząć doświadczać negatywnych skutków zdrowotnych; U osób "
 "wrażliwych mogą wystąpić poważniejsze skutki zdrowotne."
 
-#: air-quality-plugin.php:215
+#: air-quality-plugin.php:250
 msgid "Health alert: everyone may experience more serious health effects."
 msgstr ""
 "Ostrzeżenie zdrowotne, poziom alarmowy. Bardzo prawdopodobny negatywny wpływ "
 "na całą populację."
 
-#: air-quality-plugin.php:216
+#: air-quality-plugin.php:251
 msgid ""
 "Health warnings of emergency conditions. The entire population is more "
 "likely to be affected."
 msgstr ""
 "Alarm Zdrowotny: każdy może doświadczyć poważniejszych skutków zdrowotnych."
 
-#: air-quality-plugin.php:261
+#: air-quality-plugin.php:295
 msgid "Last update"
 msgstr "Ostatnia aktualizacja"
 
-#: air-quality-plugin.php:269
+#: air-quality-plugin.php:297
 msgid "AQI Level"
 msgstr "Poziom AQI"
 
-#: air-quality-plugin.php:295
+#: air-quality-plugin.php:323
 msgid "Detector place"
 msgstr "Miejsce detektora"
 
-#: air-quality-plugin.php:354
+#: air-quality-plugin.php:382
 msgid "Title"
 msgstr "Tytuł"
 
-#: air-quality-plugin.php:407
+#: air-quality-plugin.php:435
 msgid "There was an error during connction to API"
 msgstr "Wystąpił błąd podczas łączenia z API"

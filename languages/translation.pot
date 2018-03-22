@@ -2,112 +2,118 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-21 15:50+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Report-Msgid-Bugs-To: BUG-EMAIL-ADDR <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: yyyy-mm-dd hh:mm+0000\n"
+"PO-Revision-Date: 2018-03-22 14:27+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Eazy Po 0.9.5.3\n"
 
-#: air-quality-plugin.php:75 air-quality-plugin.php:134
+#: air-quality-plugin.php:103 air-quality-plugin.php:167
 msgid "AQP Settings"
 msgstr ""
 
-#: air-quality-plugin.php:140
+#: air-quality-plugin.php:156
+msgid ""
+"Something went wrong during retrieving information from google, try again"
+msgstr ""
+
+#: air-quality-plugin.php:173
 msgid "User settings"
 msgstr ""
 
-#: air-quality-plugin.php:149
+#: air-quality-plugin.php:183
 msgid "Latitude"
 msgstr ""
 
-#: air-quality-plugin.php:153
+#: air-quality-plugin.php:187
 msgid "Longitude"
 msgstr ""
 
-#: air-quality-plugin.php:157 air-quality-plugin.php:186
+#: air-quality-plugin.php:191 air-quality-plugin.php:221
 msgid "Additional weather info (when available)"
 msgstr ""
 
-#: air-quality-plugin.php:165
+#: air-quality-plugin.php:199
 msgid "Administrator settings"
 msgstr ""
 
-#: air-quality-plugin.php:174
+#: air-quality-plugin.php:209
 msgid "Default latitiude"
 msgstr ""
 
-#: air-quality-plugin.php:178
+#: air-quality-plugin.php:213
 msgid "Default longitude"
 msgstr ""
 
-#: air-quality-plugin.php:182
+#: air-quality-plugin.php:217
 msgid "Google Maps API key"
 msgstr ""
 
-#: air-quality-plugin.php:190
+#: air-quality-plugin.php:225
 msgid "Let every user configure"
 msgstr ""
 
-#: air-quality-plugin.php:211
+#: air-quality-plugin.php:246
 msgid ""
 "Air quality is considered satisfactory, and air pollution poses little or no "
 "risk."
 msgstr ""
 
-#: air-quality-plugin.php:212
+#: air-quality-plugin.php:247
 msgid ""
 "Air quality is acceptable; however, for some pollutants there may be a "
 "moderate health concern for a very small number of people who are unusually "
 "sensitive to air pollution."
 msgstr ""
 
-#: air-quality-plugin.php:213
+#: air-quality-plugin.php:248
 msgid ""
 "Members of sensitive groups may experience health effects. The general "
 "public is not likely to be affected."
 msgstr ""
 
-#: air-quality-plugin.php:214
+#: air-quality-plugin.php:249
 msgid ""
 "Everyone may begin to experience health effects; members of sensitive groups "
 "may experience more serious health effects."
 msgstr ""
 
-#: air-quality-plugin.php:215
+#: air-quality-plugin.php:250
 msgid "Health alert: everyone may experience more serious health effects."
 msgstr ""
 
-#: air-quality-plugin.php:216
+#: air-quality-plugin.php:251
 msgid ""
 "Health warnings of emergency conditions. The entire population is more "
 "likely to be affected."
 msgstr ""
 
-#: air-quality-plugin.php:261
+#: air-quality-plugin.php:295
 msgid "Last update"
 msgstr ""
 
-#: air-quality-plugin.php:269
+#: air-quality-plugin.php:297
 msgid "AQI Level"
 msgstr ""
 
-#: air-quality-plugin.php:295
+#: air-quality-plugin.php:323
 msgid "Detector place"
 msgstr ""
 
-#: air-quality-plugin.php:354
+#: air-quality-plugin.php:382
 msgid "Title"
 msgstr ""
 
-#: air-quality-plugin.php:407
+#: air-quality-plugin.php:435
 msgid "There was an error during connction to API"
 msgstr ""
