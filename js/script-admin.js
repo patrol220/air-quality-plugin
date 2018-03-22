@@ -6,6 +6,7 @@ function initAutocomplete() {
 }
 
 function getCoords() {
+    var errorText = jQuery('.google-maps-error');
 
     var lattitudeInput = jQuery('[name=latitude]');
     var longitudeInput = jQuery('[name=longitude]');
@@ -28,11 +29,21 @@ function getCoords() {
             var longitude = results[0].geometry.location.lng();
             lattitudeInput.val(latitude);
             longitudeInput.val(longitude);
+            errorText.html('');
+        }
+        else {
+            lattitudeInput.removeAttr('disabled');
+            longitudeInput.removeAttr('disabled');
+            lattitudeInput.val('');
+            longitudeInput.val('');
+            errorText.html(pk_aqp_admin_l10n.google_api_error);
         }
     });
 }
 
 function getCoordsAdmin() {
+    var errorTextAdmin = jQuery('.google-maps-error-admin');
+
     var lattitudeInput = jQuery('[name=latitude-default]');
     var longitudeInput = jQuery('[name=longitude-default]');
 
@@ -54,6 +65,14 @@ function getCoordsAdmin() {
             var longitude = results[0].geometry.location.lng();
             lattitudeInput.val(latitude);
             longitudeInput.val(longitude);
+            errorTextAdmin.html('');
+        }
+        else {
+            lattitudeInput.removeAttr('disabled');
+            longitudeInput.removeAttr('disabled');
+            lattitudeInput.val('');
+            longitudeInput.val('');
+            errorTextAdmin.html(pk_aqp_admin_l10n.google_api_error)
         }
     });
 }

@@ -30,7 +30,7 @@ Copyright 2005-2015 Automattic, Inc.
 <?php
 
 function longitude_filter($longitude) {
-    if($filtered = filter_var($longitude, FILTER_VALIDATE_FLOAT)) {
+    if(isset($longitude) && $filtered = filter_var($longitude, FILTER_VALIDATE_FLOAT)) {
         if($filtered >= -180 && $filtered <= 180) {
             return round($filtered, 6);
         }
@@ -45,7 +45,7 @@ function longitude_filter($longitude) {
 
 function latitude_filter($latitude)
 {
-    if ($filtered = filter_var($latitude, FILTER_VALIDATE_FLOAT)) {
+    if (isset($latitude) && $filtered = filter_var($latitude, FILTER_VALIDATE_FLOAT)) {
         if ($filtered >= 0 && $filtered <= 90) {
             return round($filtered, 6);
         }
@@ -57,6 +57,15 @@ function latitude_filter($latitude)
         return false;
     }
 }
+
+function your_plugin_settings_link($links) {
+    $settings_link = '<a href="options-general.php?page=your_plugin.php">Settings</a>';
+    array_unshift($links, $settings_link);
+    return $links;
+}
+
+$plugin = plugin_basename(__FILE__);
+add_filter("plugin_action_links_$plugin", 'your_plugin_settings_link' );
 
 function plugin_activated() {
     $options_default = array(
@@ -106,19 +115,21 @@ function pk_aqp_options_code() {
             $weather_info = isset($_POST['weather-info']) ? true : false;
             update_user_meta($user->ID, 'weather-info', $weather_info);
 
-            if (isset($_POST['longitude']) && isset($_POST['latitude'])) {
+            if (longitude_filter($_POST['longitude']) && latitude_filter($_POST['latitude'])) {
                 $longitude = longitude_filter($_POST['longitude']);
                 $latitude = latitude_filter($_POST['latitude']);
                 update_user_meta($user->ID, 'longitude', $longitude);
                 update_user_meta($user->ID, 'latitude', $latitude);
             }
+
         }
 
         if(current_user_can('manage_options')) {
-            if (isset($_POST['longitude-default']) && isset($_POST['latitude-default'])) {
+            if (longitude_filter($_POST['longitude-default']) && latitude_filter($_POST['latitude-default'])) {
                 $longitude_default = longitude_filter($_POST['longitude-default']);
                 $latitude_default = latitude_filter($_POST['latitude-default']);
             }
+
             $google_maps_key = $_POST['google-maps-key'];
             $user_can_set = isset($_POST['user-can-set']) ? true : false;
             $weather_info_default = isset($_POST['weather-info-default']) ? true : false;
@@ -141,8 +152,13 @@ function pk_aqp_options_code() {
 
     $google_api_key = $options_values['google_maps_key'];
 
+    $admin_script_localization = array(
+            'google_api_error' => __('Something went wrong during retrieving information from google, try again', 'air-quality-plugin')
+    );
+
     wp_enqueue_style('pk-aqp-admin-style', plugin_dir_url(__FILE__) . 'css/style-admin.css');
     wp_enqueue_script('pk-aqp-admin-script', plugin_dir_url(__FILE__) . 'js/script-admin.js', array('jquery'));
+    wp_localize_script('pk-aqp-admin-script', 'pk_aqp_admin_l10n', $admin_script_localization);
     if(!empty($google_api_key)) {
         wp_enqueue_script('pk-aqp-google-maps-script', "https://maps.googleapis.com/maps/api/js?key=$google_api_key&libraries=places&callback=initAutocomplete", array('jquery', 'pk-aqp-admin-script'));
     }
@@ -158,6 +174,7 @@ function pk_aqp_options_code() {
             <?php if(!empty($google_api_key)): ?>
             <div id="locationField">
                 <input id="autocomplete" type="text">
+                <p class="google-maps-error"></p>
             </div>
             <?php endif; ?>
             <table class="form-table">
@@ -183,6 +200,7 @@ function pk_aqp_options_code() {
             <?php if(!empty($google_api_key)): ?>
             <div id="locationField">
                 <input id="autocomplete-admin" type="text">
+                <p class="google-maps-error-admin"></p>
             </div>
             <?php endif; ?>
             <table class="form-table">
@@ -274,13 +292,7 @@ function display_air_quality_data($data_json) {
     $wind = isset($iaqi->w->v) ? round($iaqi->w->v, 2) : false;
     $wind_direction = isset($iaqi->wd->v) ? round($iaqi->wd->v) : false;
     ?>
-    <p class="top-paragraph"><?=__('Last update', 'air-quality-plugin')?>: <?=$last_update?>
-        <?php if(current_user_can('read')): ?>
-        <a href="<?=admin_url('options-general.php?page=air-quality-plugin%2Fair-quality-plugin.php')?>">
-            <img class="settings-icon" src="<?=plugin_dir_url(__FILE__) . 'img/settings.png'?>">
-        </a>
-        <?php endif; ?>
-    </p>
+    <p class="top-paragraph"><?=__('Last update', 'air-quality-plugin')?>: <?=$last_update?></p>
     <div class="aqi-level">
         <h5><?=__('AQI Level', 'air-quality-plugin')?></h5>
         <p class="amount" data-aqi="<?=$aqi?>"><?=$aqi?></p>
