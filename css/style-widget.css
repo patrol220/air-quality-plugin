@@ -1,7 +1,35 @@
-
+@media (min-width: 955px) {
+    .weather {
+        text-align: center;
+        padding-top: 15px;
+    }
+    .weather-data {
+        margin: 0 25px;
+        display: inline-block;
+        width: 100px;
+    }
+    .weather-data img {
+        width: 60px;
+    }
+}
 
 .top-paragraph {
     margin-bottom: 13px;
+}
+
+@media (max-width: 954px) {
+    .weather {
+        text-align: center;
+        padding-top: 15px;
+    }
+    .weather-data {
+        margin: 0;
+        display: inline-block;
+        width: 100px;
+    }
+    .weather-data img {
+        width: 60px;
+    }
 }
 
 .aqi-level {
@@ -23,35 +51,6 @@
     line-height: 65px;
 }
 
-@keyframes settings-rotation {
-    0% {transform: rotate(0);}
-    50% {transform: rotate(20deg);}
-    100% {transform: rotate(0);}
-}
-
-.settings-icon {
-    height: 30px;
-    float: right;
-    box-shadow: none !important;
-}
-
-.settings-icon:hover {
-    animation-name: settings-rotation;
-    animation-duration: 0.8s;
-}
-.weather {
-    text-align: center;
-    padding-top: 15px;
-}
-.weather-data {
-    margin: 0;
-    display: inline-block;
-    width: 150px;
-}
-.weather-data img {
-    width: 60px;
-}
-
 .weather-data p {
     font-size: 20px;
     margin-bottom: 15px;
@@ -61,13 +60,9 @@
     position: relative;
 }
 
-.compass-body {
-
-}
-
 .compass-pointer {
     top: 0;
-    left: 45px;
+    left: 21px;
     position: absolute;
     z-index: 9999;
 }
@@ -88,5 +83,12 @@
     display: none;
 }
 .details p {
+    margin: 0;
+}
+.sensor-place {
+    padding: 10px;
+}
+
+.sensor-place p {
     margin: 0;
 }

@@ -50,6 +50,8 @@ jQuery.fn.animateRotate = function(angle, duration, easing, complete) {
 
 jQuery(document).ready(function() {
 
+    var sensorPlaceBox = jQuery('.sensor-place');
+
     var aqiLevelText = jQuery('.aqi-level p');
     var aqiLevelBox = jQuery('.aqi-level');
     var pollutionsBox = jQuery('.pollutions');
@@ -98,10 +100,15 @@ jQuery(document).ready(function() {
     }
 
     var pollutionsBoxBgColor = increase_brightness(boxColor, 40);
+    var borderBottomSensorPlaceColor = increase_brightness(boxColor, 60);
 
     pollutionsBox.css('background-color', pollutionsBoxBgColor);
-
     aqiLevelBox.css("background-color", boxColor);
+
+    sensorPlaceBox.css({
+        'background-color': boxColor,
+        'border-bottom': '2px dashed ' + borderBottomSensorPlaceColor
+    });
 
     function aqiLevelBoxHoverIn() {
         aqiLevelText.fadeOut(100, function() {
@@ -140,7 +147,7 @@ jQuery(document).ready(function() {
         });
     }
     aqiLevelBox.hover(aqiLevelBoxHoverIn, aqiLevelBoxHoverOut);
-
+    /*
     function pollutionsBoxHoverIn() {
         pollutionsText.fadeOut(100, function() {
             pollutionsText.css({
@@ -177,4 +184,5 @@ jQuery(document).ready(function() {
         });
     }
     pollutionsBox.hover(pollutionsBoxHoverIn, pollutionsBoxHoverOut);
+    */
 });

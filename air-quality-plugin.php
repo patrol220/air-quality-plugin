@@ -251,7 +251,7 @@ function display_air_quality_data($data_json) {
         'alert_level_6' => __('Health warnings of emergency conditions. The entire population is more likely to be affected.', 'air-quality-plugin'),
     );
 
-    wp_enqueue_script('pk-aqp-widget-script', plugin_dir_url(__FILE__) . 'js/script-widget.js', array('jquery'));
+    wp_enqueue_script('pk-aqp-widget-script', plugin_dir_url(__FILE__) . 'js/script-widget.js', array('jquery'), '0.1');
     wp_localize_script('pk-aqp-widget-script', 'pk_aqp_script_localization', $script_localization_array);
     wp_enqueue_style('pk-aqp-widget-style', plugin_dir_url(__FILE__) . 'css/style-widget.css');
 
@@ -293,6 +293,9 @@ function display_air_quality_data($data_json) {
     $wind_direction = isset($iaqi->wd->v) ? round($iaqi->wd->v) : false;
     ?>
     <p class="top-paragraph"><?=__('Last update', 'air-quality-plugin')?>: <?=$last_update?></p>
+    <div class="sensor-place">
+        <p><span><b><?=__('Detector place', 'air-quality-plugin')?>: </b> <?= $place ?></span></p>
+    </div>
     <div class="aqi-level">
         <h5><?=__('AQI Level', 'air-quality-plugin')?></h5>
         <p class="amount" data-aqi="<?=$aqi?>"><?=$aqi?></p>
@@ -319,9 +322,7 @@ function display_air_quality_data($data_json) {
             <?php endif; ?>
         </div>
     </div>
-    <div class="sensor-place element-hidden">
-        <p><span><b><?=__('Detector place', 'air-quality-plugin')?>: </b> <?= $place ?></span></p>
-    </div>
+
     <?php if($display_weather_info): ?>
     <div class="weather">
         <?php if($wind): ?>
