@@ -29,7 +29,7 @@ Copyright 2005-2015 Automattic, Inc.
 ?>
 <?php
 
-function longitude_filter($longitude) {
+function pk_aqp_longitude_filter($longitude) {
     if(isset($longitude) && $filtered = filter_var($longitude, FILTER_VALIDATE_FLOAT)) {
         if($filtered >= -180 && $filtered <= 180) {
             return round($filtered, 6);
@@ -43,7 +43,7 @@ function longitude_filter($longitude) {
     }
 }
 
-function latitude_filter($latitude)
+function pk_aqp_latitude_filter($latitude)
 {
     if (isset($latitude) && $filtered = filter_var($latitude, FILTER_VALIDATE_FLOAT)) {
         if ($filtered >= 0 && $filtered <= 90) {
@@ -58,16 +58,7 @@ function latitude_filter($latitude)
     }
 }
 
-function your_plugin_settings_link($links) {
-    $settings_link = '<a href="options-general.php?page=your_plugin.php">Settings</a>';
-    array_unshift($links, $settings_link);
-    return $links;
-}
-
-$plugin = plugin_basename(__FILE__);
-add_filter("plugin_action_links_$plugin", 'your_plugin_settings_link' );
-
-function plugin_activated() {
+function pk_aqp_plugin_activated() {
     $options_default = array(
         'latitude' => '52.232600',
         'longitude' => '20.78101',
@@ -76,9 +67,9 @@ function plugin_activated() {
     );
     add_option('pk_aqp_options', $options_default);
 }
-register_activation_hook(__FILE__, 'plugin_activated');
+register_activation_hook(__FILE__, 'pk_aqp_plugin_activated');
 
-function plugin_uninstall() {
+function pk_aqp_plugin_uninstall() {
     delete_option('pk_aqp_options');
 
     //delete users plugin metadata
@@ -89,7 +80,7 @@ function plugin_uninstall() {
         delete_user_meta($user->ID, 'weather-info');
     }
 }
-register_uninstall_hook(__FILE__, 'plugin_uninstall');
+register_uninstall_hook(__FILE__, 'pk_aqp_plugin_uninstall');
 
 function pk_aqp_prepare_translations() {
     load_plugin_textdomain('air-quality-plugin', false, basename( dirname( __FILE__ ) ) . '/languages');
@@ -115,9 +106,9 @@ function pk_aqp_options_code() {
             $weather_info = isset($_POST['weather-info']) ? true : false;
             update_user_meta($user->ID, 'weather-info', $weather_info);
 
-            if (longitude_filter($_POST['longitude']) && latitude_filter($_POST['latitude'])) {
-                $longitude = longitude_filter($_POST['longitude']);
-                $latitude = latitude_filter($_POST['latitude']);
+            if (pk_aqp_longitude_filter($_POST['longitude']) && pk_aqp_latitude_filter($_POST['latitude'])) {
+                $longitude = pk_aqp_longitude_filter($_POST['longitude']);
+                $latitude = pk_aqp_latitude_filter($_POST['latitude']);
                 update_user_meta($user->ID, 'longitude', $longitude);
                 update_user_meta($user->ID, 'latitude', $latitude);
             }
@@ -125,9 +116,9 @@ function pk_aqp_options_code() {
         }
 
         if(current_user_can('manage_options')) {
-            if (longitude_filter($_POST['longitude-default']) && latitude_filter($_POST['latitude-default'])) {
-                $longitude_default = longitude_filter($_POST['longitude-default']);
-                $latitude_default = latitude_filter($_POST['latitude-default']);
+            if (pk_aqp_longitude_filter($_POST['longitude-default']) && pk_aqp_latitude_filter($_POST['latitude-default'])) {
+                $longitude_default = pk_aqp_longitude_filter($_POST['longitude-default']);
+                $latitude_default = pk_aqp_latitude_filter($_POST['latitude-default']);
             }
 
             $google_maps_key = $_POST['google-maps-key'];
@@ -240,7 +231,7 @@ function pk_aqp_widget_init() {
     register_widget('pk_aqp_air_quality_widget');
 }
 
-function display_air_quality_data($data_json) {
+function pk_aqp_display_air_quality_data($data_json) {
 
     $script_localization_array = array(
         'alert_level_1' => __('Air quality is considered satisfactory, and air pollution poses little or no risk.', 'air-quality-plugin'),
@@ -253,7 +244,7 @@ function display_air_quality_data($data_json) {
 
     wp_enqueue_script('pk-aqp-widget-script', plugin_dir_url(__FILE__) . 'js/script-widget.js', array('jquery'), '0.1');
     wp_localize_script('pk-aqp-widget-script', 'pk_aqp_script_localization', $script_localization_array);
-    wp_enqueue_style('pk-aqp-widget-style', plugin_dir_url(__FILE__) . 'css/style-widget.css');
+    wp_enqueue_style('pk-aqp-widget-style', plugin_dir_url(__FILE__) . 'css/style-widget.css', array(), '0.1');
 
     $options = get_option('pk_aqp_options');
 
@@ -425,7 +416,7 @@ class pk_aqp_air_quality_widget extends WP_Widget {
             if (!is_wp_error($api_data)) {
                 if ($api_data['response']['code'] == 200) {
                     set_transient($transient_string, $api_data['body'], 900);
-                    display_air_quality_data($api_data['body']);
+                    pk_aqp_display_air_quality_data($api_data['body']);
                 } else {
                     var_dump($api_data);
                 }
@@ -440,7 +431,7 @@ class pk_aqp_air_quality_widget extends WP_Widget {
         }
         else {
             $transient_data = get_transient($transient_string);
-            display_air_quality_data($transient_data);
+            pk_aqp_display_air_quality_data($transient_data);
         }
 
         echo $after_widget;
