@@ -358,14 +358,14 @@ class pk_aqp_air_quality_widget extends WP_Widget {
     function __construct() {
         $widget_ops = array(
             'classname' => 'pk_aqp_air_quality_widget',
-            'description' => 'Wyświetla informacje na temat jakości powietrza'
+            'description' => __('Displays info about air quality', 'air-quality-plugin')
         );
-        $this->WP_Widget('pk_aqp_air_quality_widget', 'Jakość powietrza', $widget_ops);
+        $this->WP_Widget('pk_aqp_air_quality_widget', 'Air Quality Widget', $widget_ops);
     }
 
     function form($instance) {
         $defaults = array(
-            'title' => 'Jakość powietrza'
+            'title' => 'Air Quality Widget'
         );
         $instance = wp_parse_args((array)$instance, $defaults);
         $title = $instance['title'];
