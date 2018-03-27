@@ -1,42 +1,42 @@
 @media (min-width: 955px) {
-    .weather {
+    .pk_aqp_air_quality_widget .weather {
         text-align: center;
         padding-top: 15px;
     }
-    .weather-data {
+    .pk_aqp_air_quality_widget .weather-data {
         margin: 0 25px;
         display: inline-block;
         width: 100px;
     }
-    .weather-data img {
+    .pk_aqp_air_quality_widget .weather-data img {
         width: 60px;
     }
 }
 
-.top-paragraph {
-    margin-bottom: 13px;
-}
-
 @media (max-width: 954px) {
-    .weather {
+    .pk_aqp_air_quality_widget .weather {
         text-align: center;
         padding-top: 15px;
     }
-    .weather-data {
+    .pk_aqp_air_quality_widget .weather-data {
         margin: 0;
         display: inline-block;
         width: 100px;
     }
-    .weather-data img {
+    .pk_aqp_air_quality_widget .weather-data img {
         width: 60px;
     }
 }
 
-.aqi-level {
+.pk_aqp_air_quality_widget .top-paragraph {
+    margin-bottom: 13px;
+}
+
+.pk_aqp_air_quality_widget .aqi-level {
     padding: 10px;
     background-color: #fff;
 }
-.aqi-level h5 {
+.pk_aqp_air_quality_widget .aqi-level h5 {
     text-align: center;
     color: #fff;
     font-weight: 100;
@@ -44,51 +44,60 @@
     margin-bottom: 2px;
 }
 
-.aqi-level p {
+.pk_aqp_air_quality_widget .aqi-level p {
     text-align: center;
     margin: 0;
     font-size: 65px;
     line-height: 65px;
 }
 
-.weather-data p {
+.pk_aqp_air_quality_widget .weather-data p {
     font-size: 20px;
     margin-bottom: 15px;
 }
 
-.compass {
+.pk_aqp_air_quality_widget .compass {
     position: relative;
 }
 
-.compass-pointer {
+.pk_aqp_air_quality_widget .compass-pointer {
     top: 0;
     left: 21px;
     position: absolute;
     z-index: 9999;
 }
 
-.pollutions {
+.pk_aqp_air_quality_widget .pollutions {
     padding: 10px;
     text-align: center;
 }
 
-.pollutions span {
+.pk_aqp_air_quality_widget .pollutions span {
     margin: 7px 10px;
     display: inline-block;
     line-height: 15px;
     font-size: 15px;
 }
 
-.element-hidden {
+.pk_aqp_air_quality_widget .element-hidden {
     display: none;
 }
-.details p {
+.pk_aqp_air_quality_widget .details p {
     margin: 0;
 }
-.sensor-place {
+.pk_aqp_air_quality_widget .sensor-place {
     padding: 10px;
 }
 
-.sensor-place p {
+.pk_aqp_air_quality_widget .sensor-place p {
+    margin: 0;
+}
+
+.api-error {
+    padding: 10px;
+    background-color: #c76464;
+    border: 2px dashed #c50000;
+}
+.api-error p {
     margin: 0;
 }

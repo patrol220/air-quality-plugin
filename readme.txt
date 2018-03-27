@@ -1,11 +1,11 @@
 === Air Quality Plugin ===
 Contributors: patrol220
 Donate link: paypal.me/patrol220
-Tags: weather pollution monitor widget health
+Tags: weather, pollution, monitor, widget, health
 Requires at least: 4.7
 Tested up to: 4.9.4
 Requires PHP: 5.5
-Stable tag: 0.11
+Stable tag: 0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,14 +29,18 @@ Plugin additionaly displays some info about weather from detector if there is an
 
 == Screenshots ==
 
-1. https://i.imgur.com/ijdFgNI.png
-2. https://i.imgur.com/QBjlyYH.png
-3. https://i.imgur.com/JnQcHDe.png
-4. https://i.imgur.com/pWJCwZ0.png
-5. https://i.imgur.com/gIvxSwk.png
-6. https://i.imgur.com/tweuBFu.png
+1. screenshot-1.png
+2. screenshot-2.png
+3. screenshot-3.png
+4. screenshot-4.png
+5. screenshot-5.png
+6. screenshot-6.png
 
 == Changelog ==
+
+= 0.2 =
+* API connection error message
+* Upgrade in translation
 
 = 0.11 =
 * Upgrades in responsivity
@@ -46,6 +50,9 @@ Plugin additionaly displays some info about weather from detector if there is an
 * First version of plugin
 
 == Upgrade Notice ==
+
+= 0.2 =
+Added more elegant way to display error when connecting with API went wrong
 
 = 0.11 =
 There were changes in css and html to improve displaying in mobile devices. Also there were included anything what you need to translate plugin.

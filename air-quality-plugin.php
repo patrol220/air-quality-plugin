@@ -3,7 +3,7 @@
 /*
  * Plugin Name: Air Quality Plugin
  * Description: Plugin for displaying air quality data
- * Version: 0.11
+ * Version: 0.2
  * Author: Patryk Kasiczak
  * License: GPLv2 or later
  */
@@ -244,7 +244,7 @@ function pk_aqp_display_air_quality_data($data_json) {
 
     wp_enqueue_script('pk-aqp-widget-script', plugin_dir_url(__FILE__) . 'js/script-widget.js', array('jquery'), '0.1');
     wp_localize_script('pk-aqp-widget-script', 'pk_aqp_script_localization', $script_localization_array);
-    wp_enqueue_style('pk-aqp-widget-style', plugin_dir_url(__FILE__) . 'css/style-widget.css', array(), '0.1');
+
 
     $options = get_option('pk_aqp_options');
 
@@ -409,6 +409,8 @@ class pk_aqp_air_quality_widget extends WP_Widget {
 
         $transient_string = $latitude . ';' . $longitude;
 
+        wp_enqueue_style('pk-aqp-widget-style', plugin_dir_url(__FILE__) . 'css/style-widget.css', array(), '0.2');
+
         if(get_transient($transient_string) == false) {
 
             $url = "http://api.waqi.info/feed/geo:$latitude;$longitude/?token=$token";
@@ -418,13 +420,15 @@ class pk_aqp_air_quality_widget extends WP_Widget {
                     set_transient($transient_string, $api_data['body'], 900);
                     pk_aqp_display_air_quality_data($api_data['body']);
                 } else {
-                    var_dump($api_data);
+                    ?>
+                    <div class="api-error"><p><?=__('There was an error during connecting to API', 'air-quality-plugin')?></p></div>
+                    <?php
                 }
             } else { // if WP_Error occured
                 $error = $api_data->get_error_message();
                 ?>
 
-                <p><?=__('There was an error during connction to API', 'air-quality-plugin')?>: <?= $error ?></p>
+                <p><?=__('There was an error during connecting to API', 'air-quality-plugin')?>: <?= $error ?></p>
 
                 <?php
             }
