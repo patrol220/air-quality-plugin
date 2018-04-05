@@ -1,31 +1,18 @@
-@media (min-width: 955px) {
-    .pk_aqp_air_quality_widget .weather {
-        text-align: center;
-        padding-top: 15px;
-    }
-    .pk_aqp_air_quality_widget .weather-data {
-        margin: 0 25px;
-        display: inline-block;
-        width: 100px;
-    }
-    .pk_aqp_air_quality_widget .weather-data img {
-        width: 60px;
-    }
-}
 
-@media (max-width: 954px) {
-    .pk_aqp_air_quality_widget .weather {
-        text-align: center;
-        padding-top: 15px;
-    }
-    .pk_aqp_air_quality_widget .weather-data {
-        margin: 0;
-        display: inline-block;
-        width: 100px;
-    }
-    .pk_aqp_air_quality_widget .weather-data img {
-        width: 60px;
-    }
+.pk_aqp_air_quality_widget .weather {
+    text-align: center;
+    padding-top: 15px;
+    color: #000;
+}
+.pk_aqp_air_quality_widget .weather-data {
+    margin: 0;
+    display: inline-block;
+    width: 100px;
+}
+.pk_aqp_air_quality_widget .weather-data img {
+    width: 60px;
+    display: inline-block !important;
+    box-shadow: none !important;
 }
 
 .pk_aqp_air_quality_widget .top-paragraph {
@@ -41,7 +28,8 @@
     color: #fff;
     font-weight: 100;
     font-size: 15px;
-    margin-bottom: 2px;
+    font-family: "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+    margin: 0 0 2px 0;
 }
 
 .pk_aqp_air_quality_widget .aqi-level p {
@@ -49,6 +37,7 @@
     margin: 0;
     font-size: 65px;
     line-height: 65px;
+    color: #000;
 }
 
 .pk_aqp_air_quality_widget .weather-data p {
@@ -64,12 +53,12 @@
     top: 0;
     left: 21px;
     position: absolute;
-    z-index: 9999;
 }
 
 .pk_aqp_air_quality_widget .pollutions {
     padding: 10px;
     text-align: center;
+    color: #000;
 }
 
 .pk_aqp_air_quality_widget .pollutions span {
@@ -87,6 +76,7 @@
 }
 .pk_aqp_air_quality_widget .sensor-place {
     padding: 10px;
+    color: #000;
 }
 
 .pk_aqp_air_quality_widget .sensor-place p {

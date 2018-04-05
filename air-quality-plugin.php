@@ -3,7 +3,7 @@
 /*
  * Plugin Name: Air Quality Plugin
  * Description: Plugin for displaying air quality data
- * Version: 0.2
+ * Version: 0.12
  * Author: Patryk Kasiczak
  * License: GPLv2 or later
  */
@@ -46,7 +46,7 @@ function pk_aqp_longitude_filter($longitude) {
 function pk_aqp_latitude_filter($latitude)
 {
     if (isset($latitude) && $filtered = filter_var($latitude, FILTER_VALIDATE_FLOAT)) {
-        if ($filtered >= 0 && $filtered <= 90) {
+        if ($filtered >= -90 && $filtered <= 90) {
             return round($filtered, 6);
         }
         else {
@@ -112,7 +112,6 @@ function pk_aqp_options_code() {
                 update_user_meta($user->ID, 'longitude', $longitude);
                 update_user_meta($user->ID, 'latitude', $latitude);
             }
-
         }
 
         if(current_user_can('manage_options')) {
@@ -120,8 +119,12 @@ function pk_aqp_options_code() {
                 $longitude_default = pk_aqp_longitude_filter($_POST['longitude-default']);
                 $latitude_default = pk_aqp_latitude_filter($_POST['latitude-default']);
             }
-
-            $google_maps_key = $_POST['google-maps-key'];
+            if (preg_match('/^[-_A-za-z0-9]{0,}$/', $_POST['google-maps-key'])) {
+                $google_maps_key = $_POST['google-maps-key'];
+            }
+            if (preg_match('/^[A-za-z0-9]{0,}$/', $_POST['google-maps-key'])) {
+                $waqi_key = $_POST['waqi-key'];
+            }
             $user_can_set = isset($_POST['user-can-set']) ? true : false;
             $weather_info_default = isset($_POST['weather-info-default']) ? true : false;
             $options = array(
@@ -129,7 +132,8 @@ function pk_aqp_options_code() {
                 'latitude' => $latitude_default,
                 'user_can_set' => $user_can_set,
                 'weather_info' => $weather_info_default,
-                'google_maps_key' => $google_maps_key
+                'google_maps_key' => $google_maps_key,
+                'waqi_key' => $waqi_key
             );
             update_option('pk_aqp_options', $options);
         }
@@ -205,8 +209,12 @@ function pk_aqp_options_code() {
                         <td><input type="text" name="longitude-default" value="<?=esc_attr($options_values['longitude'])?>"></td>
                     </tr>
                     <tr>
-                        <th><?=__('Google Maps API key', 'air-quality-plugin')?></th>
+                        <th><?=__('Google Maps API key', 'air-quality-plugin')?> (<a href="https://developers.google.com/maps/documentation/javascript/get-api-key"><?=__('you can get it here', 'air-quality-plugin')?></a>)</th>
                         <td><input type="text" name="google-maps-key" value="<?=esc_attr($options_values['google_maps_key'])?>"></td>
+                    </tr>
+                    <tr>
+                        <th><?=__('waqi.info API KEY', 'air-quality-plugin')?> (<a href="http://aqicn.org/data-platform/token"><?=__('you can get it here', 'air-quality-plugin')?></a>)</th>
+                        <td><input type="text" name="waqi-key" value="<?=esc_attr($options_values['waqi_key'])?>"></td>
                     </tr>
                     <tr>
                         <th><?=__('Additional weather info (when available)', 'air-quality-plugin')?></th>
@@ -392,52 +400,84 @@ class pk_aqp_air_quality_widget extends WP_Widget {
             echo $before_title . $title . $after_title;
         }
 
-        $user = wp_get_current_user();
-
-        $token = '304bab739cd27a0c110e34b2b1a598d095e4eaec';
-
-        $options = get_option('pk_aqp_options');
-
-        if(!$options['user_can_set'] || empty(get_user_meta($user->ID, 'latitude', true)) || empty(get_user_meta($user->ID, 'longitude', true))) {
-            $latitude = $options['latitude'];
-            $longitude = $options['longitude'];
-        }
-        else {
-            $latitude = get_user_meta($user->ID, 'latitude', true);
-            $longitude = get_user_meta($user->ID, 'longitude', true);
-        }
-
-        $transient_string = $latitude . ';' . $longitude;
-
         wp_enqueue_style('pk-aqp-widget-style', plugin_dir_url(__FILE__) . 'css/style-widget.css', array(), '0.2');
 
-        if(get_transient($transient_string) == false) {
+        $user = wp_get_current_user();
+        $options = get_option('pk_aqp_options');
 
-            $url = "http://api.waqi.info/feed/geo:$latitude;$longitude/?token=$token";
-            $api_data = wp_remote_get($url);
-            if (!is_wp_error($api_data)) {
-                if ($api_data['response']['code'] == 200) {
-                    set_transient($transient_string, $api_data['body'], 900);
-                    pk_aqp_display_air_quality_data($api_data['body']);
-                } else {
-                    ?>
-                    <div class="api-error"><p><?=__('There was an error during connecting to API', 'air-quality-plugin')?></p></div>
-                    <?php
-                }
-            } else { // if WP_Error occured
-                $error = $api_data->get_error_message();
+        if(empty($options['waqi_key'])) {
+            if(current_user_can('manage_options')) {
                 ?>
-
-                <p><?=__('There was an error during connecting to API', 'air-quality-plugin')?>: <?= $error ?></p>
-
+                <div class="api-error">
+                    <p><?= __('Please set api key for waqi.info in settings', 'air-quality-plugin') ?></p></div>
+                <?php
+            }
+            else {
+                ?>
+                <div class="api-error">
+                    <p><?= __('The administrator has not set up plugin properly yet so it is not working', 'air-quality-plugin') ?></p></div>
                 <?php
             }
         }
         else {
-            $transient_data = get_transient($transient_string);
-            pk_aqp_display_air_quality_data($transient_data);
-        }
+            $waqi_key = $options['waqi_key'];
 
+            if (!$options['user_can_set'] || empty(get_user_meta($user->ID, 'latitude', true)) || empty(get_user_meta($user->ID, 'longitude', true))) {
+                $latitude = $options['latitude'];
+                $longitude = $options['longitude'];
+            } else {
+                $latitude = get_user_meta($user->ID, 'latitude', true);
+                $longitude = get_user_meta($user->ID, 'longitude', true);
+            }
+
+            $transient_string = $latitude . ';' . $longitude;
+            if (get_transient($transient_string) == false) {
+
+                $url = "http://api.waqi.info/feed/geo:$latitude;$longitude/?token=$waqi_key";
+                $api_data = wp_remote_get($url);
+                if (!is_wp_error($api_data)) {
+                    if ($api_data['response']['code'] == 200) {
+                        $response = json_decode($api_data['body']);
+                        if($response->status == 'error') {
+                            if($response->data = 'Invalid key') {
+                                ?>
+                                <div class="api-error">
+                                    <p><?= __('Please check your waqi.info api key. It seems that wrong api key was given', 'air-quality-plugin') ?></p>
+                                </div>
+                                <?php
+                            }
+                            else {
+                                ?>
+                                <div class="api-error">
+                                    <p><?= __('There was an error during connecting to API', 'air-quality-plugin') ?>: <?= $response->data ?></p>
+                                </div>
+                                <?php
+                            }
+                        }
+                        else {
+                            set_transient($transient_string, $api_data['body'], 900);
+                            pk_aqp_display_air_quality_data($api_data['body']);
+                        }
+                    } else {
+                        ?>
+                        <div class="api-error">
+                            <p><?= __('There was an error during connecting to API', 'air-quality-plugin') ?></p>
+                        </div>
+                        <?php
+                    }
+                } else { // if WP_Error occured
+                    $error = $api_data->get_error_message();
+                    ?>
+                    <div class="api-error">
+                        <p><?= __('There was an error during connecting to API', 'air-quality-plugin') ?>: <?= $error ?></p>
+                    </div>
+                    <?php
+                }
+            } else {
+                $transient_data = get_transient($transient_string);
+                pk_aqp_display_air_quality_data($transient_data);
+            }
+        }
         echo $after_widget;
     }
 }

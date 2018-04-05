@@ -65,13 +65,6 @@ jQuery(document).ready(function() {
     compassPointer.animateRotate(windDirection, 2000, 'easeOutElastic');
 
     aqiLevelBox.css('min-height', aqiLevelBox.outerHeight());
-    
-    pollutionsBox.css('min-height', pollutionsBox.outerHeight());
-    pollutionsText = jQuery('.pollutions .details');
-    pollutionsTextDef = pollutionsText.html();
-
-    var pollutionsTextAlign = pollutionsBox.css('text-align');
-    var pollutionsFontSize = pollutionsBox.css('font-size');
 
     var message = '';
     if(aqi <= 50) {
@@ -147,42 +140,4 @@ jQuery(document).ready(function() {
         });
     }
     aqiLevelBox.hover(aqiLevelBoxHoverIn, aqiLevelBoxHoverOut);
-    /*
-    function pollutionsBoxHoverIn() {
-        pollutionsText.fadeOut(100, function() {
-            pollutionsText.css({
-                "text-align": "left",
-                "font-size": "12px",
-                "line-height": "15px"
-            });
-            pollutionsText.html(jQuery('.sensor-place').html());
-        });
-        pollutionsText.fadeIn(100, function() {
-            if(!pollutionsBox.mouseIsOver()) {
-                pollutionsBoxHoverOut();
-            }
-            else {
-                pollutionsText.clearQueue();
-            }
-        });
-    }
-    function pollutionsBoxHoverOut() {
-        pollutionsText.fadeOut(100, function() {
-            pollutionsText.css({
-                "text-align": pollutionsTextAlign,
-                "font-size": pollutionsFontSize
-            });
-            pollutionsText.html(pollutionsTextDef);
-        });
-        pollutionsText.fadeIn(100, function () {
-            if(pollutionsBox.mouseIsOver()) {
-                pollutionsBoxHoverIn();
-            }
-            else {
-                pollutionsText.clearQueue();
-            }
-        });
-    }
-    pollutionsBox.hover(pollutionsBoxHoverIn, pollutionsBoxHoverOut);
-    */
 });

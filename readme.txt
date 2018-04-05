@@ -5,7 +5,7 @@ Tags: weather, pollution, monitor, widget, health
 Requires at least: 4.7
 Tested up to: 4.9.4
 Requires PHP: 5.5
-Stable tag: 0.2
+Stable tag: 0.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
