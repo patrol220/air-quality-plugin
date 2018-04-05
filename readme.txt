@@ -5,7 +5,7 @@ Tags: weather, pollution, monitor, widget, health
 Requires at least: 4.7
 Tested up to: 4.9.4
 Requires PHP: 5.5
-Stable tag: 0.12
+Stable tag: 0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,10 @@ Plugin additionaly displays some info about weather from detector if there is an
 
 == Changelog ==
 
+= 0.3 =
+* Added field in settings for providing waqi.info API key
+* Some improvements in ux
+
 = 0.2 =
 * API connection error message
 * Upgrade in translation
@@ -50,6 +54,9 @@ Plugin additionaly displays some info about weather from detector if there is an
 * First version of plugin
 
 == Upgrade Notice ==
+
+= 0.3 =
+There were added field in settings for providing waqi.info API key so now you must generate your own one, there was also changes in informing users and administrator about errors
 
 = 0.2 =
 Added more elegant way to display error when connecting with API went wrong

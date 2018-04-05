@@ -3,7 +3,7 @@
 /*
  * Plugin Name: Air Quality Plugin
  * Description: Plugin for displaying air quality data
- * Version: 0.13
+ * Version: 0.3
  * Author: Patryk Kasiczak
  * License: GPLv2 or later
  */
@@ -228,7 +228,7 @@ function pk_aqp_options_code() {
                 </tbody>
             </table>
             <?php endif;?>
-            <input type="submit" name="Submit" class="button-primary" value="Zapisz">
+            <input type="submit" name="Submit" class="button-primary" value="<?=__('Save', 'air-quality-plugin')?>">
         </form>
     </div>
     <?php
