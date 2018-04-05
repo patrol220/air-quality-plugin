@@ -122,7 +122,7 @@ function pk_aqp_options_code() {
             if (preg_match('/^[-_A-za-z0-9]{0,}$/', $_POST['google-maps-key'])) {
                 $google_maps_key = $_POST['google-maps-key'];
             }
-            if (preg_match('/^[A-za-z0-9]{0,}$/', $_POST['google-maps-key'])) {
+            if (preg_match('/^[A-za-z0-9]{0,}$/', $_POST['waqi-key'])) {
                 $waqi_key = $_POST['waqi-key'];
             }
             $user_can_set = isset($_POST['user-can-set']) ? true : false;
@@ -359,7 +359,6 @@ function pk_aqp_display_air_quality_data($data_json) {
     </div>
     <?php endif;?>
     <?php
-
 }
 
 //Widget class
