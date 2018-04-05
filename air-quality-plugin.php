@@ -3,7 +3,7 @@
 /*
  * Plugin Name: Air Quality Plugin
  * Description: Plugin for displaying air quality data
- * Version: 0.12
+ * Version: 0.13
  * Author: Patryk Kasiczak
  * License: GPLv2 or later
  */
@@ -148,7 +148,8 @@ function pk_aqp_options_code() {
     $google_api_key = $options_values['google_maps_key'];
 
     $admin_script_localization = array(
-            'google_api_error' => __('Something went wrong during retrieving information from google, try again', 'air-quality-plugin')
+        'google_api_error' => __('Something went wrong during retrieving information from google, try again', 'air-quality-plugin'),
+        'google_api_authentication_error' => __('There was a problem with your Google Maps API key, probably you do not entered it correctly, or you do not enabled Geocoding API for your key')
     );
 
     wp_enqueue_style('pk-aqp-admin-style', plugin_dir_url(__FILE__) . 'css/style-admin.css');

@@ -2,3 +2,7 @@
     width: 380px;
 }
 
+.gm-err-autocomplete {
+    border: 1px solid red !important;
+    background-image: none !important;
+}

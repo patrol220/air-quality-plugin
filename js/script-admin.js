@@ -77,6 +77,11 @@ function getCoordsAdmin() {
     });
 }
 
+function gm_authFailure() {
+    jQuery('.google-maps-error').html(pk_aqp_admin_l10n.google_api_authentication_error);
+    jQuery('.google-maps-error-admin').html(pk_aqp_admin_l10n.google_api_authentication_error);
+}
+
 //Disable submiting form by pressing enter key on google fields
 jQuery(document).on('keyup keypress', 'form #autocomplete-admin, form #autocomplete', function(e) {
     if(e.keyCode === 13) {
