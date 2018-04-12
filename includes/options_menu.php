@@ -17,7 +17,7 @@ function pk_aqp_options_code() {
         $options_values_prev = get_option('pk_aqp_options');
         check_admin_referer('pk_aqp_settings' . $user->ID); //nonce
 
-        if($options['user_can_set'] && current_user_can('read')) {
+        if($options_values_prev['user_can_set'] == 1 && current_user_can('read')) {
             $weather_info = isset($_POST['weather-info']) ? true : false;
             update_user_meta($user->ID, 'weather-info', $weather_info);
 
