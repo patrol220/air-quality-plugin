@@ -5,7 +5,7 @@ Tags: weather, pollution, monitor, widget, health
 Requires at least: 4.7
 Tested up to: 4.9.4
 Requires PHP: 5.5
-Stable tag: 0.31
+Stable tag: 0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,10 @@ Plugin additionaly displays some info about weather from detector if there is an
 
 == Changelog ==
 
+= 0.40 =
+* Added information in plugin settings about errors
+* Added AJAX method for users to set localization
+
 = 0.31 =
 * Fixed mistake with checking options data
 
@@ -57,6 +61,9 @@ Plugin additionaly displays some info about weather from detector if there is an
 * First version of plugin
 
 == Upgrade Notice ==
+
+= 0.40 =
+Now users can enter their localization from widget level, so user do not have to go to settings. Also added more information in plugin settings if there were any mistakes in entered data
 
 = 0.31 =
 Fix for checking waqi API key correctness

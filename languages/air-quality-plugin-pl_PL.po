@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-05 16:58+0200\n"
-"PO-Revision-Date: 2018-04-05 17:02+0200\n"
+"POT-Creation-Date: 2018-04-12 10:28+0200\n"
+"PO-Revision-Date: 2018-04-12 10:30+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -18,17 +18,46 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: air-quality-plugin.php:94 air-quality-plugin.php:163
+#: air-quality-plugin.php:74 includes/options_menu.php:93
 msgid "AQP Settings"
 msgstr "Ustawienia AQP"
 
-#: air-quality-plugin.php:151
+#: air-quality-plugin.php:90
+msgid "Displays info about air quality"
+msgstr "Wyświetla informacje o jakości powietrza"
+
+#: air-quality-plugin.php:103
+msgid "Title"
+msgstr "Tytuł"
+
+#: includes/handle_ajax.php:27 includes/options_menu.php:31
+#: includes/options_menu.php:43
+msgid ""
+"Given coordinates are wrong. Please give values in range from -180 to 180 "
+"for longitude and from -90 to 90 for latitude"
+msgstr ""
+"Podano nieprawidłowe koordynaty. Proszę podać wartości od -180 do 180 dla "
+"długości geograficznej i od -90 do 90 dla szerokości geograficznej"
+
+#: includes/options_menu.php:52
+msgid "Wrong Google Maps API key was given"
+msgstr "Klucz API Google Maps"
+
+#: includes/options_menu.php:60
+msgid "Wrong waqi.info API key was given"
+msgstr "Podano zły klucz API waqi.info"
+
+#: includes/options_menu.php:69
+msgid "Saved options"
+msgstr "Zapisano ustawienia"
+
+#: includes/options_menu.php:81 includes/widget_display.php:13
 msgid ""
 "Something went wrong during retrieving information from google, try again"
 msgstr ""
 "Coś poszło nie tak w trakcie pobierania informacji z google, spróbuj ponownie"
 
-#: air-quality-plugin.php:152
+#: includes/options_menu.php:82
 msgid ""
 "There was a problem with your Google Maps API key, probably you do not "
 "entered it correctly, or you do not enabled Geocoding API for your key"
@@ -37,51 +66,55 @@ msgstr ""
 "wprowadziłeś go prawidłowo, lub nie włączyłeś usługi Geocoding API dla "
 "twojego klucza"
 
-#: air-quality-plugin.php:169
+#: includes/options_menu.php:99
 msgid "User settings"
 msgstr "Ustawienia użytkownika"
 
-#: air-quality-plugin.php:179
+#: includes/options_menu.php:109 includes/widget_display.php:16
 msgid "Latitude"
 msgstr "Szerokość geograficzna"
 
-#: air-quality-plugin.php:183
+#: includes/options_menu.php:113 includes/widget_display.php:15
 msgid "Longitude"
 msgstr "Długość geograficzna"
 
-#: air-quality-plugin.php:187 air-quality-plugin.php:221
+#: includes/options_menu.php:117 includes/options_menu.php:151
 msgid "Additional weather info (when available)"
 msgstr "Dodatkowe informacje pogodowe (jeśli dostępne)"
 
-#: air-quality-plugin.php:195
+#: includes/options_menu.php:125
 msgid "Administrator settings"
 msgstr "Ustawienia administratora"
 
-#: air-quality-plugin.php:205
+#: includes/options_menu.php:135
 msgid "Default latitiude"
 msgstr "Domyślna szerokość geograficzna"
 
-#: air-quality-plugin.php:209
+#: includes/options_menu.php:139
 msgid "Default longitude"
 msgstr "Domyślna długość geograficzna"
 
-#: air-quality-plugin.php:213
+#: includes/options_menu.php:143
 msgid "Google Maps API key"
 msgstr "Klucz API Google Maps"
 
-#: air-quality-plugin.php:213 air-quality-plugin.php:217
+#: includes/options_menu.php:143 includes/options_menu.php:147
 msgid "you can get it here"
 msgstr "możesz zdobyć go tutaj"
 
-#: air-quality-plugin.php:217
+#: includes/options_menu.php:147
 msgid "waqi.info API KEY"
 msgstr "Klucz API waqi.info"
 
-#: air-quality-plugin.php:225
+#: includes/options_menu.php:155
 msgid "Let every user configure"
 msgstr "Pozwól każdemu użytkownikowi na konfigurację"
 
-#: air-quality-plugin.php:246
+#: includes/options_menu.php:161 includes/widget_display.php:19
+msgid "Save"
+msgstr "Zapisz"
+
+#: includes/widget_display.php:7
 msgid ""
 "Air quality is considered satisfactory, and air pollution poses little or no "
 "risk."
@@ -89,7 +122,7 @@ msgstr ""
 "Jakość powietrza jest uznawana za zadowalającą, a zanieczyszczenie powietrza "
 "stanowi niewielkie ryzyko lub jego brak."
 
-#: air-quality-plugin.php:247
+#: includes/widget_display.php:8
 msgid ""
 "Air quality is acceptable; however, for some pollutants there may be a "
 "moderate health concern for a very small number of people who are unusually "
@@ -99,7 +132,7 @@ msgstr ""
 "być umiarkowanie szkodliwe dla bardzo małej liczby osób, które są niezwykle "
 "wrażliwe na zanieczyszczenie powietrza."
 
-#: air-quality-plugin.php:248
+#: includes/widget_display.php:9
 msgid ""
 "Members of sensitive groups may experience health effects. The general "
 "public is not likely to be affected."
@@ -107,7 +140,7 @@ msgstr ""
 "U osób wrażliwych mogą wystąpić negatywne skutki dla zdrowia. Większość "
 "populacji może nie odczuwać negatywnych objawów."
 
-#: air-quality-plugin.php:249
+#: includes/widget_display.php:10
 msgid ""
 "Everyone may begin to experience health effects; members of sensitive groups "
 "may experience more serious health effects."
@@ -115,56 +148,60 @@ msgstr ""
 "Każdy może zacząć doświadczać negatywnych skutków zdrowotnych; U osób "
 "wrażliwych mogą wystąpić poważniejsze skutki zdrowotne."
 
-#: air-quality-plugin.php:250
+#: includes/widget_display.php:11
 msgid "Health alert: everyone may experience more serious health effects."
 msgstr ""
 "Ostrzeżenie zdrowotne, poziom alarmowy. Bardzo prawdopodobny negatywny wpływ "
 "na całą populację."
 
-#: air-quality-plugin.php:251
+#: includes/widget_display.php:12
 msgid ""
 "Health warnings of emergency conditions. The entire population is more "
 "likely to be affected."
 msgstr ""
 "Alarm Zdrowotny: każdy może doświadczyć poważniejszych skutków zdrowotnych."
 
-#: air-quality-plugin.php:295
+#: includes/widget_display.php:14
+msgid "Localization"
+msgstr "Lokalizacja"
+
+#: includes/widget_display.php:17
+msgid "Weather info"
+msgstr "Informacje pogodowe"
+
+#: includes/widget_display.php:18
+msgid "Settings"
+msgstr "Ustawienia AQP"
+
+#: includes/widget_display.php:69
 msgid "Last update"
 msgstr "Ostatnia aktualizacja"
 
-#: air-quality-plugin.php:297
+#: includes/widget_display.php:71
 msgid "Detector place"
 msgstr "Miejsce detektora"
 
-#: air-quality-plugin.php:300
+#: includes/widget_display.php:74
 msgid "AQI Level"
 msgstr "Poziom AQI"
 
-#: air-quality-plugin.php:370
-msgid "Displays info about air quality"
-msgstr "Wyświetla informacje o jakości powietrza"
-
-#: air-quality-plugin.php:383
-msgid "Title"
-msgstr "Tytuł"
-
-#: air-quality-plugin.php:413
+#: includes/widget_display.php:149
 msgid "Please set api key for waqi.info in settings"
 msgstr "Ustaw swój klucz API waqi.info w ustawieniach"
 
-#: air-quality-plugin.php:419
+#: includes/widget_display.php:154
 msgid ""
 "The administrator has not set up plugin properly yet so it is not working"
 msgstr "Administrator nie skonfigurował poprawnie wtyczki więc nie działa"
 
-#: air-quality-plugin.php:446
+#: includes/widget_display.php:190
 msgid ""
 "Please check your waqi.info api key. It seems that wrong api key was given"
 msgstr ""
 "Sprawdź swój klucz API waqi.info. Wygląda na to że został podany zły klucz "
 "API"
 
-#: air-quality-plugin.php:453 air-quality-plugin.php:465
-#: air-quality-plugin.php:473
+#: includes/widget_display.php:197 includes/widget_display.php:208
+#: includes/widget_display.php:216
 msgid "There was an error during connecting to API"
 msgstr "Wystąpił błąd podczas łączenia z API"

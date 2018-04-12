@@ -2,122 +2,150 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: BUG-EMAIL-ADDR <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: yyyy-mm-dd hh:mm+0000\n"
-"PO-Revision-Date: 2018-03-27 16:56+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-05 16:58+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Eazy Po 0.9.5.3\n"
 
-#: air-quality-plugin.php:94 air-quality-plugin.php:158
+#: air-quality-plugin.php:94 air-quality-plugin.php:163
 msgid "AQP Settings"
 msgstr ""
 
-#: air-quality-plugin.php:147
+#: air-quality-plugin.php:151
 msgid ""
 "Something went wrong during retrieving information from google, try again"
 msgstr ""
 
-#: air-quality-plugin.php:164
+#: air-quality-plugin.php:152
+msgid ""
+"There was a problem with your Google Maps API key, probably you do not "
+"entered it correctly, or you do not enabled Geocoding API for your key"
+msgstr ""
+
+#: air-quality-plugin.php:169
 msgid "User settings"
 msgstr ""
 
-#: air-quality-plugin.php:174
+#: air-quality-plugin.php:179
 msgid "Latitude"
 msgstr ""
 
-#: air-quality-plugin.php:178
+#: air-quality-plugin.php:183
 msgid "Longitude"
 msgstr ""
 
-#: air-quality-plugin.php:182 air-quality-plugin.php:212
+#: air-quality-plugin.php:187 air-quality-plugin.php:221
 msgid "Additional weather info (when available)"
 msgstr ""
 
-#: air-quality-plugin.php:190
+#: air-quality-plugin.php:195
 msgid "Administrator settings"
 msgstr ""
 
-#: air-quality-plugin.php:200
+#: air-quality-plugin.php:205
 msgid "Default latitiude"
 msgstr ""
 
-#: air-quality-plugin.php:204
+#: air-quality-plugin.php:209
 msgid "Default longitude"
 msgstr ""
 
-#: air-quality-plugin.php:208
+#: air-quality-plugin.php:213
 msgid "Google Maps API key"
 msgstr ""
 
-#: air-quality-plugin.php:216
+#: air-quality-plugin.php:213 air-quality-plugin.php:217
+msgid "you can get it here"
+msgstr ""
+
+#: air-quality-plugin.php:217
+msgid "waqi.info API KEY"
+msgstr ""
+
+#: air-quality-plugin.php:225
 msgid "Let every user configure"
 msgstr ""
 
-#: air-quality-plugin.php:237
+#: air-quality-plugin.php:246
 msgid ""
 "Air quality is considered satisfactory, and air pollution poses little or no "
 "risk."
 msgstr ""
 
-#: air-quality-plugin.php:238
+#: air-quality-plugin.php:247
 msgid ""
 "Air quality is acceptable; however, for some pollutants there may be a "
 "moderate health concern for a very small number of people who are unusually "
 "sensitive to air pollution."
 msgstr ""
 
-#: air-quality-plugin.php:239
+#: air-quality-plugin.php:248
 msgid ""
 "Members of sensitive groups may experience health effects. The general "
 "public is not likely to be affected."
 msgstr ""
 
-#: air-quality-plugin.php:240
+#: air-quality-plugin.php:249
 msgid ""
 "Everyone may begin to experience health effects; members of sensitive groups "
 "may experience more serious health effects."
 msgstr ""
 
-#: air-quality-plugin.php:241
+#: air-quality-plugin.php:250
 msgid "Health alert: everyone may experience more serious health effects."
 msgstr ""
 
-#: air-quality-plugin.php:242
+#: air-quality-plugin.php:251
 msgid ""
 "Health warnings of emergency conditions. The entire population is more "
 "likely to be affected."
 msgstr ""
 
-#: air-quality-plugin.php:286
+#: air-quality-plugin.php:295
 msgid "Last update"
 msgstr ""
 
-#: air-quality-plugin.php:288
+#: air-quality-plugin.php:297
 msgid "Detector place"
 msgstr ""
 
-#: air-quality-plugin.php:291
+#: air-quality-plugin.php:300
 msgid "AQI Level"
 msgstr ""
 
-#: air-quality-plugin.php:361
+#: air-quality-plugin.php:370
 msgid "Displays info about air quality"
 msgstr ""
 
-#: air-quality-plugin.php:374
+#: air-quality-plugin.php:383
 msgid "Title"
 msgstr ""
 
-#: air-quality-plugin.php:422 air-quality-plugin.php:429
+#: air-quality-plugin.php:413
+msgid "Please set api key for waqi.info in settings"
+msgstr ""
+
+#: air-quality-plugin.php:419
+msgid ""
+"The administrator has not set up plugin properly yet so it is not working"
+msgstr ""
+
+#: air-quality-plugin.php:446
+msgid ""
+"Please check your waqi.info api key. It seems that wrong api key was given"
+msgstr ""
+
+#: air-quality-plugin.php:453 air-quality-plugin.php:465
+#: air-quality-plugin.php:473
 msgid "There was an error during connecting to API"
 msgstr ""

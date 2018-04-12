@@ -48,13 +48,65 @@ jQuery.fn.animateRotate = function(angle, duration, easing, complete) {
     });
 };
 
-jQuery(document).ready(function() {
+function initAutocomplete() {
+    autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'));
+    autocomplete.addListener('place_changed', getCoords);
+}
 
+function getCoords() {
+    var errorText = jQuery('.google-maps-error');
+
+    var lattitudeInput = jQuery('#latitude-input');
+    var longitudeInput = jQuery('#longitude-input');
+
+    lattitudeInput.attr('disabled', 'disabled');
+    longitudeInput.attr('disabled', 'disabled');
+
+    lattitudeInput.val('Proszę czekać...');
+    longitudeInput.val('Proszę czekać...');
+
+    var geocoder = new google.maps.Geocoder();
+    var address = document.getElementById('autocomplete').value;
+
+    geocoder.geocode({ 'address': address }, function (results, status) {
+
+        if (status == google.maps.GeocoderStatus.OK) {
+            lattitudeInput.removeAttr('disabled');
+            longitudeInput.removeAttr('disabled');
+            var latitude = results[0].geometry.location.lat();
+            var longitude = results[0].geometry.location.lng();
+            lattitudeInput.val(latitude);
+            longitudeInput.val(longitude);
+            errorText.html('');
+        }
+        else {
+            lattitudeInput.removeAttr('disabled');
+            longitudeInput.removeAttr('disabled');
+            lattitudeInput.val('');
+            longitudeInput.val('');
+            errorText.html(pk_aqp_script_localization.google_api_error);
+        }
+    });
+}
+
+function checked(attr) {
+    if(attr == true) {
+        return 'checked = "checked"';
+    }
+    else {
+        return '';
+    }
+}
+
+var pollutionsBoxBgColor = '';
+
+function loadWidget() {
     var sensorPlaceBox = jQuery('.sensor-place');
 
     var aqiLevelText = jQuery('.aqi-level p');
     var aqiLevelBox = jQuery('.aqi-level');
     var pollutionsBox = jQuery('.pollutions');
+
     var aqi = aqiLevelText.attr('data-aqi');
 
     var aqiLevelTextAlign = aqiLevelText.css('text-align');
@@ -92,7 +144,7 @@ jQuery(document).ready(function() {
         boxColor = '#510610'
     }
 
-    var pollutionsBoxBgColor = increase_brightness(boxColor, 40);
+    pollutionsBoxBgColor = increase_brightness(boxColor, 40);
     var borderBottomSensorPlaceColor = increase_brightness(boxColor, 60);
 
     pollutionsBox.css('background-color', pollutionsBoxBgColor);
@@ -140,4 +192,107 @@ jQuery(document).ready(function() {
         });
     }
     aqiLevelBox.hover(aqiLevelBoxHoverIn, aqiLevelBoxHoverOut);
+}
+
+jQuery(document).ready(function() {
+
+    loadWidget();
+
+    var widgetData = jQuery('.pk_aqp_widget_data');
+    var googleApiIncluded = false;
+    var cityChanged = false;
+    var widgetHtmlTemp = '';
+    jQuery(document).on('click', '.open-settings', function($) {
+        jQuery('.open-settings').animateRotate(480, 6000, 'linear');
+        widgetHtmlTemp = jQuery('.pk_aqp_widget_data').html();
+        var data = {
+            action: 'pk_aqp_load_settings_fields'
+        };
+        jQuery.get(pk_aqp_variables.ajax_url, data, function(recv) {
+            var html =
+                '<p class="top-paragraph">'+pk_aqp_script_localization.settings+'<img id="back-settings" src="'+ pk_aqp_variables.plugin_url +'img/back.png"></p>' +
+                '<div class="settings-section"> ' +
+                '<p>'+pk_aqp_script_localization.localization+'</p>' +
+                '<input type="text" class="settings-input" id="autocomplete"> ' +
+                '<input type="hidden" id="ajax-nonce" value="'+ recv['ajax_nonce'] +'"> ' +
+                '<p>'+pk_aqp_script_localization.longitude+'</p> ' +
+                '<input type="text" class="settings-input" id="longitude-input" value="'+ recv['longitude'] +'">' +
+                '<p>'+pk_aqp_script_localization.latitude+'</p> ' +
+                '<input type="text" class="settings-input" id="latitude-input" value="'+ recv['latitude'] +'">' +
+                '<p>'+pk_aqp_script_localization.weather+'</p>' +
+                '<input type="checkbox" id="weather-input"' + checked(recv['weather']) + '>' +
+                '<p class="settings-error"></p>' +
+                '<button id="save-button" class="settings-button">'+pk_aqp_script_localization.save+'</button> ' +
+                '</div>';
+            widgetData.html(html);
+
+            jQuery('.settings-section').css({
+                'background-color': boxColor,
+                'border-bottom': '3px dashed ' + pollutionsBoxBgColor,
+                'border-top': '3px dashed ' + pollutionsBoxBgColor
+            });
+            jQuery('#save-button').css({
+               'background-color': pollutionsBoxBgColor
+            });
+            jQuery('.settings-input').css({
+                'background-color': pollutionsBoxBgColor
+            });
+            if(!googleApiIncluded) {
+                googleApiIncluded = true;
+                jQuery.getScript("https://maps.googleapis.com/maps/api/js?key=" + recv['google_maps_key'] + "&libraries=places&callback=initAutocomplete", function (data, textStatus, jqxhr) {
+                    console.log(data); //data returned
+                    console.log(textStatus); //success
+                    console.log(jqxhr.status); //200
+                    console.log('Load was performed.');
+                });
+            }
+            else {
+                initAutocomplete();
+            }
+        });
+    });
+    jQuery(document).on('click', '#back-settings', function() {
+        widgetData.html(widgetHtmlTemp);
+        loadWidget();
+    });
+
+    jQuery(document).on('click', '#save-button', function() {
+        var settingsError = jQuery('.settings-error');
+        var saveButton = jQuery('#save-button');
+        saveButton.html('');
+        saveButton.css({
+            'background-image': 'url(' + pk_aqp_variables.plugin_url + 'img/ajax-loader.gif)',
+            'background-repeat': 'no-repeat',
+            'background-position': 'center',
+            'background-size': '30px 30px'
+        });
+        data = {
+            action: 'pk_aqp_save_user_coordinates',
+            'ajax_nonce': jQuery('#ajax-nonce').val(),
+            'longitude': jQuery('#longitude-input').val(),
+            'latitude': jQuery('#latitude-input').val(),
+            'weather': jQuery('#weather-input').is(':checked')
+        };
+        jQuery.get(pk_aqp_variables.ajax_url, data, function(recv) {
+            if(recv['message'] === '') {
+                data = {
+                    action: 'pk_aqp_get_widget_html'
+                };
+                jQuery.get(pk_aqp_variables.ajax_url, data, function(recv) {
+                    widgetData.html(recv);
+                    loadWidget();
+                });
+            }
+            else {
+                settingsError.html(recv['message']);
+                settingsError.css({
+                    'display': 'block'
+                });
+                saveButton.html('Save');
+                saveButton.css({
+                    'background-image': 'none'
+                })
+            }
+        });
+    })
 });
